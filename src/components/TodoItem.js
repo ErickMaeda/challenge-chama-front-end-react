@@ -1,22 +1,21 @@
 import React, {
     Component
 } from 'react';
+import {
+    Card
+} from 'react-bootstrap';
 
 class TodoItem extends Component {
 
     render() {
-        const {description, id} = this.props.todo;
-
-        return ( 
-            <div style={containerStyle}>
-                <h3>{description} {id}</h3>
-            </div>
+        const {description} = this.props.todo;
+        
+        return (
+            <Card>
+                <Card.Body>{description}</Card.Body>
+            </Card>
         );
     }
-};
-
-const containerStyle = {
-    background: 'red'
 };
 
 export default TodoItem;

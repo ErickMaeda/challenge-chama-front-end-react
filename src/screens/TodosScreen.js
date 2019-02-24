@@ -2,7 +2,14 @@ import React, {
     Component
 } from 'react';
 import TodoItem from '../components/TodoItem';
-import Header from '../components/Header'
+import Header from '../components/Header';
+import { connect } from "react-redux";
+import { fetch as fetchTodos } from '../actions/todoActions';
+import {
+    Card,
+    ListGroup
+} from 'react-bootstrap';
+
 class TodosScreen extends Component {
 
     state = {
@@ -25,14 +32,35 @@ class TodosScreen extends Component {
         ]
     };
 
+    componentDidMount() {
+        this.props.fetchTodos();
+    }
+
     render() {
-        return ( 
+        return (
             <div>
                 <Header />
-                {this.state.todos.map((todo) => <TodoItem todo={todo} key={todo.id} />)}
+                <Card>
+                    <Card.Header>To Dos</Card.Header>
+                    <ListGroup variant="flush">
+                        {
+                            this.props.todos.map((todo) => (
+                                <ListGroup.Item key={todo.id}>
+                                    <TodoItem todo={todo}/>
+                                </ListGroup.Item>
+                            ))
+                        }
+                    </ListGroup>
+                </Card>
             </div>
         );
     }
 };
 
-export default TodosScreen;
+const mapStateToProps = ({todos}) => {
+    return {
+        todos
+    };
+};
+  
+export default connect(mapStateToProps, {fetchTodos})(TodosScreen);
