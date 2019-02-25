@@ -27,7 +27,12 @@ class TodoItem extends Component {
         return (
             <Card>
                 <Card.Body>
-                    <FormCheck onChange={this.props.updateCompleted.bind(this, id, !completed)} checked={completed} inline />{this.renderDescription()}
+                    <FormCheck 
+                        onChange={this.props.updateCompleted.bind(this, id, !completed)} 
+                        checked={completed} 
+                        inline 
+                    />
+                    {this.renderDescription()}
                 </Card.Body>
             </Card>
         );
