@@ -40,7 +40,7 @@ class TodosScreen extends Component {
         return (
             <div>
                 <Header />
-                <Card>
+                <Card style={containerStyle}>
                     <Card.Header>To Dos</Card.Header>
                     <ListGroup variant="flush">
                         {
@@ -55,6 +55,10 @@ class TodosScreen extends Component {
             </div>
         );
     }
+};
+
+const containerStyle = {
+    margin: 25
 };
 
 const mapStateToProps = ({todos}) => {

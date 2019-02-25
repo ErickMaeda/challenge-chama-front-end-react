@@ -9,10 +9,9 @@ export const add = (todo) => async dispatch => {
   getToDosCollection().set(todo);
 };
 
-export const complete = (id) => async dispatch => {
-  getToDosCollection().set({
-    id,
-    completed: true
+export const updateCompleted = (id, completed) => async dispatch => {  
+  getToDosCollection().doc(id).set({
+    completed
   }, {
     merge: true
   });
