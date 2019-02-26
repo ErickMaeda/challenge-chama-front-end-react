@@ -7,11 +7,9 @@ import { connect } from "react-redux";
 import { fetch as fetchTodos } from '../actions/todoActions';
 import {
     Card,
-    ListGroup,
+    ListGroup
 } from 'react-bootstrap';
-import {
-    Link
-} from 'react-router-dom';
+import TodoItemInputCreate from '../components/TodoItemInputCreate';
 
 class TodosScreen extends Component {
 
@@ -44,11 +42,11 @@ class TodosScreen extends Component {
             <div className="container margin" style={containerStyle}>
                 <Card>
                     <Card.Header>
-                        <div className="row justify-content-between" style={{marginLeft: 5, marginRight: 5}}>
-                            <Card.Title>Task List</Card.Title>
-                            <Link  to={'/todo/create'} className="btn btn-success align-self-end">Novo</Link>
-                        </div>
+                        Task List
                     </Card.Header>
+                    <div className="container margin" style={containerStyle}>
+                        <TodoItemInputCreate/>
+                    </div>
                     <ListGroup variant="flush">
                         {
                             this.props.todos.map((todo) => (
