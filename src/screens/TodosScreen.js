@@ -2,13 +2,16 @@ import React, {
     Component
 } from 'react';
 import TodoItem from '../components/TodoItem';
-import Header from '../components/Header';
+import withHeaderHoc from '../hocs/withHeaderHoc';
 import { connect } from "react-redux";
 import { fetch as fetchTodos } from '../actions/todoActions';
 import {
     Card,
-    ListGroup
+    ListGroup,
 } from 'react-bootstrap';
+import {
+    Link
+} from 'react-router-dom';
 
 class TodosScreen extends Component {
 
@@ -38,10 +41,14 @@ class TodosScreen extends Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <Card style={containerStyle}>
-                    <Card.Header>To Dos</Card.Header>
+            <div className="container margin" style={containerStyle}>
+                <Card>
+                    <Card.Header>
+                        <div className="row justify-content-between" style={{marginLeft: 5, marginRight: 5}}>
+                            <Card.Title>Task List</Card.Title>
+                            <Link  to={'/todo/create'} className="btn btn-success align-self-end">Novo</Link>
+                        </div>
+                    </Card.Header>
                     <ListGroup variant="flush">
                         {
                             this.props.todos.map((todo) => (
@@ -58,7 +65,7 @@ class TodosScreen extends Component {
 };
 
 const containerStyle = {
-    margin: 25
+    marginTop: 25
 };
 
 const mapStateToProps = ({todos}) => {
@@ -67,4 +74,4 @@ const mapStateToProps = ({todos}) => {
     };
 };
   
-export default connect(mapStateToProps, {fetchTodos})(TodosScreen);
+export default connect(mapStateToProps, {fetchTodos})(withHeaderHoc(TodosScreen));
