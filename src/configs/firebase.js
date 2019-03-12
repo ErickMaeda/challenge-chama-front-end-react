@@ -6,7 +6,6 @@ import {
 
 firebase.initializeApp(FirebaseConfig);
 
-export const getDatabase = () => firebase
-    .firestore();
+export const getDatabase = () => firebase.firestore();
 
 export const getToDosCollection = () => getDatabase().collection("todos");
